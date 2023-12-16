@@ -1,0 +1,159 @@
+body{
+  margin: 0;
+  padding: 0;
+}
+
+#logo{
+  height: 80px;
+  width: 80px;
+  margin-left: 10px;
+}
+
+#checkout{
+  height: 30px;
+  width: 30px;
+  margin-right: 40px;
+  cursor: pointer;
+}
+
+.topBar{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 85px;
+  /* background-color: rgb(228, 160, 33); */
+  background-image: url('https://wallpapercave.com/wp/wp6446359.png');
+}
+
+#titleText{
+  font-family: "Anton";
+  font-size: 3em;
+  text-shadow: 0 1px 0 #ccc, 
+               0 2px 0 #c9c9c9,
+               0 3px 0 #bbb,
+               0 4px 0 #b9b9b9,
+               0 5px 0 #aaa,
+               0 6px 1px rgba(0,0,0,.1),
+               0 0 5px rgba(0,0,0,.1),
+               0 1px 3px rgba(0,0,0,.3),
+               0 3px 5px rgba(0,0,0,.2),
+               0 5px 10px rgba(0,0,0,.25),
+               0 10px 10px rgba(0,0,0,.2),
+               0 20px 20px rgba(0,0,0,.15);
+  letter-spacing: 2px;
+}
+
+.sticky{
+  position: sticky;
+  top: 0px;
+  z-index: 1;
+}
+
+.navigation{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: black;
+}
+
+#topBarUL{
+  display: flex;
+  width: 100%;
+  justify-content: center;
+  gap: 20px;
+}
+
+.topBarLI{
+  list-style: none;
+  display: inline-block;
+  /* margin: 20px 20px 0 0; */
+  cursor: pointer;
+  color: white;
+  position: relative;
+  text-decoration: none;
+  font-family: 'comfortaa';
+}
+
+.topBarLI::before{
+  content: '';
+  position: absolute;
+  display: block;
+  width: 100%;
+  height: 1px;
+  bottom: 0;
+  left: 0;
+  background-color: rgb(255, 255, 255);
+  transform: scaleX(0);
+  transition: transform 0.3s ease;
+}
+
+li:hover::before{
+  transform: scaleX(1);
+}
+
+a{
+  color: white;
+  text-decoration: none;
+}
+
+.mainBody{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  margin: auto;
+  width: 800px;
+  margin-top: 150px;
+  /*background-color: rgb(255, 255, 255,0.5);
+  border-radius: 10px;
+  height: 300px; */
+}
+
+.imageHolder{
+  background-image: url('https://wallpapers.com/images/hd/clothing-shop-store-boutique-lfvb6xer25h5iphi.jpg');
+  object-fit: cover;
+  height: 732px;
+  overflow: hidden;
+  background-position: center;
+}
+
+.mainText{
+  display: flex;
+  justify-content: center;
+  text-align: center;
+  flex-direction: column;
+}
+
+.mText{
+  font-size: 1.5em;
+}
+
+#homeBtn {
+  width: 300px;
+  height: 80px;
+  border: 3px solid rgb(228, 160, 33);
+  border-radius: 45px;
+  transition: all 0.3s;
+  cursor: pointer;
+  background: rgb(255, 255, 255,0.8);
+  font-size: 1.2em;
+  font-weight: 550;
+  font-family: 'Montserrat', sans-serif;
+  margin-top: 50px;
+  margin-bottom: 10px;
+  margin-left: 15px;
+}
+
+#homeBtn:hover {
+  background: rgb(0, 0, 0);
+  border: 3px solid white;
+  color: white;
+  font-size: 1.5em;
+}
+
+/* .footer{
+  display: flex;
+  height: 400px;
+  justify-content: center;
+  background-image: url('https://wallpapercave.com/wp/wp6446359.png');
+} */
