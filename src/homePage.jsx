@@ -1,19 +1,26 @@
 import './App.css'
 import { useState } from "react";
-import { useEffect } from "react";
-import { AllProducts }from './allProducts'
+import AllProducts from './allProducts';
 import Footer from './footer';
+import { Link } from "react-router-dom";
+import TopBar from './topBar';
 
-const HomePage = () => {
-    
+const HomePage = ({num,individualProduct,getID}) => {
     
     return(
-        <><div className='imageHolder'>
+        <>
+        <TopBar num={num}/>
+        <div className='imageHolder'>
             <div className='mainBody'>
+                <Link to='/Collection'>
                 <button id='homeBtn'>Shop Now</button>
+                </Link>
             </div>
         </div>
-        <AllProducts />
+        <AllProducts 
+        getID={getID}
+        individualProduct={individualProduct}
+        />
         <Footer />
         </>
     )

@@ -4,11 +4,10 @@ import Footer from './footer';
 import modelOne from './assets/modelOne.jpg'
 import modelTwo from './assets/modelTwo.jpg'
 
-const AboutUs = () => {
-
+const AboutUs = ({num}) => {
     return(
         <>
-        <TopBar/>
+        <TopBar num={num}/>
         <div className='aboutTop'>
         <h2>Elevate your essence with Phantom Apparel, where style meets indentity</h2>
         <p>Indulge in the allure of Phantom Apparel, a sanctuary where fashion

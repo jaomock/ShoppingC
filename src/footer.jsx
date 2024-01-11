@@ -40,7 +40,7 @@ function Footer(){
             </div>
             <div className='sectionThree'>
                 <h3 className='bottomTitle'>HELP</h3>
-                <ul>
+                <ul id='footerUL'>
                     <li className='footerLI'>Shipping & Returns</li>
                     <li className='footerLI'>Repairs</li>
                     <li className='footerLI'>Warranty</li>

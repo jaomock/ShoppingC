@@ -1,63 +1,58 @@
 import React from "react";
 import { useState } from "react";
 import { useEffect } from "react";
+import { Link } from "react-router-dom";
 import './index.css'
 
-const featuredProducts = []
-const allProducts = []
+export default function AllProducts({
+        individualProduct,
+    }){
 
-// export const AllProducts = () => {
-    export function AllProducts(){
-    // const [allProducts,setAllProducts] = useState([])
-    // const [featuredProducts,setFeaturedProducts] = useState([])
-    const [fProduct,setFProduct] = useState(false)
+        const [fProducts,setFProducts] = useState([])
+
+        
 
     useEffect(() => {
+        async function fetchData(){
 
-        // const abortCont = new AbortController();
+        const response = await fetch('https://fakestoreapi.com/products')
+        const data = await response.json()
+        const ufData = await data.filter(data => !data.category.includes('electronics'))
 
-        const shuffle = (array) => {
-            for (let i = array.length - 1; i > 0; i--){
-                let j = Math.floor(Math.random() * (i + 1));
-                let temp = array[i]
-                array[i] = array[j]
-                array[j] = temp
-            }
+        for(let i = 0 ; i < 4; i++){
+            let x = Math.floor(Math.random() * ufData.length)
+                let newProduct = {
+                    id:ufData[x].id,
+                    title:ufData[x].title,
+                    price:ufData[x].price,
+                    desc:ufData[x].description,
+                    category:ufData[x].category,
+                    imgURL:ufData[x].image,
+                }
+                ufData.splice(x,1)
+                setFProducts(fProducts => [...fProducts,newProduct]) 
         }
 
+        }
 
-        fetch("https://fakestoreapi.com/products", { mode: "cors",})
-        .then(res => {
-            return res.json()
-        })
-        .then(data => {
-            for(let i = 0; i < data.length; i++){
-                if(data[i].category === 'electronics'){
-                    return
+        fetchData()
+//maybe put array in []?
+    }, [])
+
+    function getIDTwo(key){
+        for(let i = 0 ; i < fProducts.length; i++){
+            if(fProducts[i].id === key){
+                if(individualProduct.length === 1){
+                    individualProduct.pop()
+                    individualProduct.push(fProducts[i])
+                    // browser = individualProduct[0].id
                 } else {
-                allProducts.push({id:data[i].id,title:data[i].title,price:data[i].price,desc:data[i].description,category:data[i].category,imgURL:data[i].image})
+                individualProduct.push(fProducts[i])
+                // browser = individualProduct[0].id
                 }
             }
-            
-        })
-        .then(() => {
-            shuffle(allProducts)
-            for(let i = 0; i < 4; i++){
-                featuredProducts.push(allProducts[i])
-                console.log(featuredProducts)
-            }
-
-            setFProduct(true)
-        })
-        .catch(err => {
-            // if(err.name === 'AbortError'){
-            //     console.log('Fetch aborted')
-            // }
-            console.log(err)
-        })
-
-        // return () => abortCont.abort()
-    }, [])
+        }
+    }
 
     return(
         <>
@@ -66,63 +61,17 @@ const allProducts = []
             <h2>Featured Products</h2>
             </div>
             <div className="footerBox">
-            {featuredProducts.map(fP =>
-                    <div className="eachFBox">
+            {fProducts.map(fP =>
+            <Link className='linkCol' to={{pathname:'/Collection/:Item'}}>
+                    <div key={fP.id} className="eachFBox" onClick={(e) => getIDTwo(fP.id)} >
                         <img src={fP.imgURL} id='footerImg' ></img>
                         <h2 id='footerTitle' >{fP.title}</h2>
                         <h3 id='footerPrice' >${fP.price}</h3>
                     </div>
+                    </Link>
                 )}
                 </div>
         </div>
         </>
     )
-    
 }
-
-// function LoadAllProduct(){
-//     return(
-//     <>
-//         <div className='footerAll'>
-//         <div className="footerBox">
-//         {allProducts.map(fP =>
-//                 <div className="eachFBox">
-//                     <img src={fP.imgURL} id='footerImg' ></img>
-//                     <h2 id='footerTitle' >{fP.title}</h2>
-//                     <h3 id='footerPrice' >${fP.price}</h3>
-//                 </div>
-//             )}
-//             </div>
-//     </div>
-//     </>
-//     )
-// }
-
-
-
-// export const products = []
-// export const featuredProducts = []
-
-// export const [featuredProducts,setFeaturedProducts] = useState([])
-
-
-// export async function allProducts(){
-
-//     const getProduct = await fetch("https://fakestoreapi.com/products", { mode: "cors"})
-//     let response = await getProduct.json()
-//     // console.log(response)
-//     for(let i = 0; i < response.length; i++){
-//     products.push({id:response[i].id,title:response[i].title,price:response[i].price,desc:response[i].description,category:response[i].category,imgURL:response[i].image})
-//     console.log(products)
-//     }
-
-//     function random(min,max){
-//         return Math.random() * (max-min) + min;
-//     }
-//     for(let i = 0; i < 4; i++){
-//         featuredProducts.push(products[Math.floor(random(1,20)) - 1])
-//         console.log(products[Math.floor(random(1,20)) - 1])
-//         console.log(featuredProducts)
-//     }
-
-// }

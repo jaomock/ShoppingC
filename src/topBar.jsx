@@ -4,14 +4,28 @@ import shopping from './assets/shopping.svg'
 import { Link } from "react-router-dom"
 import HomePage from './homePage'
 
-const TopBar = () =>{
+const TopBar = ({num}) =>{
+
+  let opacityNum = 0
+
+    if(num === 0){
+      opacityNum = 0
+    } else {
+      opacityNum = 1
+    }
+
     return(
         <>
         <div className='sticky'>
         <div className='topBar'>
           <img src={logo} id='logo'></img>
           <h1 id='titleText'>Phantom Apparel</h1>
+          <Link to='/Cart'>
+          <div className='checkOutBox'>
           <img src={shopping} id='checkout'></img>
+          <p style={{opacity:opacityNum}} className='checkoutNum'>{num}</p>
+          </div>
+          </Link>
         </div>
         <div className='navigation'>
           <ul id='topBarUL'>
